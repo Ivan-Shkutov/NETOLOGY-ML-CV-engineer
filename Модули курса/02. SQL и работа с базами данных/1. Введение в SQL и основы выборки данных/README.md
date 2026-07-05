@@ -30,12 +30,10 @@
 
 #### Решение: LIKE 'L%a' ищет начало и конец. NOT LIKE '% %' исключает пробелы. 
 
-`
-   SELECT DISTINCT city
-   FROM city
-   WHERE city LIKE 'L%a'
-   AND city NOT LIKE '% %';
-`
+    SELECT DISTINCT city
+    FROM city
+    WHERE city LIKE 'L%a'
+    AND city NOT LIKE '% %';
 
 
 ### Задание №3
@@ -46,12 +44,11 @@
 
 #### Решение: Сортируем по дате по убыванию (DESC) и берём 10 штук (LIMIT). 
 
-`
-SELECT *
-FROM payment
-ORDER BY payment_date DESC
-LIMIT 10;
-`
+
+    SELECT *
+    FROM payment
+    ORDER BY payment_date DESC
+    LIMIT 10;
 
 
 ### Задание №4
@@ -69,14 +66,12 @@ LIMIT 10;
 
 #### Решение: Склеиваем через ||. Домен вырезаем от позиции @ до конца строки с помощью SUBSTRING. Длину считаем LENGTH. 
 
-`
-SELECT
-   last_name || ' ' || first_name AS "Фамилия и имя",
-   email AS "email",
-   '@' || SUBSTRING(email FROM POSITION('@' IN email) + 1) AS "Домен электронной почты вместе с символом @",
-   CHAR_LENGTH(email) AS "Количество символов в значении email"
-FROM customer;
-`
+    SELECT
+       last_name || ' ' || first_name AS "Фамилия и имя",
+       email AS "email",
+       '@' || SUBSTRING(email FROM POSITION('@' IN email) + 1) AS "Домен электронной почты вместе с символом @",
+       CHAR_LENGTH(email) AS "Количество символов в значении email"
+    FROM customer;
 
 
 
@@ -90,15 +85,14 @@ FROM customer;
 
 #### Решение: active = 1 для активных. Ищем по именам. Переводим в нижний регистр через LOWER(). 
 
-`
-SELECT
-   LOWER(first_name) AS "Имя в нижнем регистре",
-   LOWER(last_name) AS "Фамилия в нижнем регистре",
-   active AS "Флаг активности"
-FROM customer
-WHERE active = 1
- AND UPPER(first_name) IN ('KELLY', 'WILLIE');
-`
+
+    SELECT
+       LOWER(first_name) AS "Имя в нижнем регистре",
+       LOWER(last_name) AS "Фамилия в нижнем регистре",
+       active AS "Флаг активности"
+    FROM customer
+    WHERE active = 1
+     AND UPPER(first_name) IN ('KELLY', 'WILLIE');
 
 
 ### Задание №6
@@ -110,16 +104,14 @@ WHERE active = 1
 #### Решение: ILIKE для регистронезависимого поиска в PostgreSQL. ROUND(..., 3) для округления. 
 
 
-`
-SELECT
-   film_id AS "Идентификатор фильма",
-   title AS "Название фильма",
-   ROUND(rental_rate / length, 3) AS "Отношение стоимости аренды к длительности"
-FROM film
-WHERE title ILIKE 'be%'
- AND LENGTH(description) > 100
- AND (rental_rate / length) > 0.015;
-`
+    SELECT
+       film_id AS "Идентификатор фильма",
+       title AS "Название фильма",
+       ROUND(rental_rate / length, 3) AS "Отношение стоимости аренды к длительности"
+    FROM film
+    WHERE title ILIKE 'be%'
+     AND LENGTH(description) > 100
+     AND (rental_rate / length) > 0.015;
 
 
 ## Дополнительная часть:
@@ -134,16 +126,14 @@ WHERE title ILIKE 'be%'
 
 
 
-`
-SELECT
-   title AS "Название фильма",
-   rating AS "Рейтинг",
-   rental_rate AS "Стоимость аренды"
-FROM film
-WHERE (rating = 'R' AND rental_rate BETWEEN 0.00 AND 3.00)
-  OR (rating = 'PG-13' AND rental_rate >= 4.00)
-ORDER BY rating, title;
-`
+    SELECT
+       title AS "Название фильма",
+       rating AS "Рейтинг",
+       rental_rate AS "Стоимость аренды"
+    FROM film
+    WHERE (rating = 'R' AND rental_rate BETWEEN 0.00 AND 3.00)
+      OR (rating = 'PG-13' AND rental_rate >= 4.00)
+    ORDER BY rating, title;
 
 ### Задание №2
 
@@ -155,16 +145,14 @@ ORDER BY rating, title;
 
 
 
-`
-SELECT
-   title AS "Название фильма",
-   description AS "Описание",
-   CHAR_LENGTH(description) AS "Количество символов в описании"
-FROM film
-WHERE description IS NOT NULL
-ORDER BY CHAR_LENGTH(description) DESC
-LIMIT 3;
-`
+    SELECT
+       title AS "Название фильма",
+       description AS "Описание",
+       CHAR_LENGTH(description) AS "Количество символов в описании"
+    FROM film
+    WHERE description IS NOT NULL
+    ORDER BY CHAR_LENGTH(description) DESC
+    LIMIT 3;
 
 
 ### Задание №3
@@ -180,15 +168,14 @@ LIMIT 3;
 
 
 
-`
-SELECT
-   email AS "Email",
-   SUBSTRING(email FROM 1 FOR POSITION('@' IN email) - 1) AS "Имя почтового ящика",
-   SUBSTRING(email FROM POSITION('@' IN email) + 1) AS "Домен"
-FROM customer
-WHERE email IS NOT NULL
-ORDER BY email;
-`
+
+    SELECT
+       email AS "Email",
+       SUBSTRING(email FROM 1 FOR POSITION('@' IN email) - 1) AS "Имя почтового ящика",
+       SUBSTRING(email FROM POSITION('@' IN email) + 1) AS "Домен"
+    FROM customer
+    WHERE email IS NOT NULL
+    ORDER BY email;
 
 
 ### Задание №4
@@ -209,18 +196,17 @@ ORDER BY email;
     склеиваем через ||.
 
 
-`
-SELECT
-   email AS "Email",
-   UPPER(LEFT(SUBSTRING(email FROM 1 FOR POSITION('@' IN email) - 1), 1))
-       || LOWER(SUBSTRING(SUBSTRING(email FROM 1 FOR POSITION('@' IN email) - 1) FROM 2))
-       AS "Имя почтового ящика",
-   UPPER(LEFT(SUBSTRING(email FROM POSITION('@' IN email) + 1), 1))
-       || LOWER(SUBSTRING(SUBSTRING(email FROM POSITION('@' IN email) + 1) FROM 2))
-       AS "Домен"
-FROM customer
-WHERE email IS NOT NULL
-ORDER BY email;
-`
+    SELECT
+       email AS "Email",
+       UPPER(LEFT(SUBSTRING(email FROM 1 FOR POSITION('@' IN email) - 1), 1))
+           || LOWER(SUBSTRING(SUBSTRING(email FROM 1 FOR POSITION('@' IN email) - 1) FROM 2))
+           AS "Имя почтового ящика",
+       UPPER(LEFT(SUBSTRING(email FROM POSITION('@' IN email) + 1), 1))
+           || LOWER(SUBSTRING(SUBSTRING(email FROM POSITION('@' IN email) + 1) FROM 2))
+           AS "Домен"
+    FROM customer
+    WHERE email IS NOT NULL
+    ORDER BY email;
+
 
 
