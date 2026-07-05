@@ -16,11 +16,8 @@
 
 #### Решение: Используем DISTINCT для уникальности. 
 
-``
-   SELECT DISTINCT city
-`   
-   FROM city;
-``
+    SELECT DISTINCT city
+    FROM city;
 
 
 ### Задание №2
