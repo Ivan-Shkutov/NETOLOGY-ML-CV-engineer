@@ -31,10 +31,10 @@
 #### Решение: LIKE 'L%a' ищет начало и конец. NOT LIKE '% %' исключает пробелы. 
 
 `
-SELECT DISTINCT city
-FROM city
-WHERE city LIKE 'L%a'
-AND city NOT LIKE '% %';
+   SELECT DISTINCT city
+   FROM city
+   WHERE city LIKE 'L%a'
+   AND city NOT LIKE '% %';
 `
 
 
