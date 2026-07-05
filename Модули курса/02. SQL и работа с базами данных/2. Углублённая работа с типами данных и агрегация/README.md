@@ -8,6 +8,8 @@
 
 Работа выполняется в базе данных dvd-rental.
 
+![0](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/02.%20SQL%20и%20работа%20с%20базами%20данных/2.%20Углублённая%20работа%20с%20типами%20данных%20и%20агрегация/0.png)
+
  
 ## Основная часть:
 
@@ -29,6 +31,8 @@
     FROM film
     WHERE special_features @> ARRAY['Behind the Scenes'];
 
+![1.11](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/02.%20SQL%20и%20работа%20с%20базами%20данных/2.%20Углублённая%20работа%20с%20типами%20данных%20и%20агрегация/1.11.png)
+
 Способ 2: Оператор ANY
 
     SELECT 
@@ -37,6 +41,8 @@
     FROM film
     WHERE 'Behind the Scenes' = ANY(special_features);
 
+![1.12](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/02.%20SQL%20и%20работа%20с%20базами%20данных/2.%20Углублённая%20работа%20с%20типами%20данных%20и%20агрегация/1.12.png)
+
 Способ 3: Функция array_position (проверка наличия элемента)
 
     SELECT 
@@ -44,6 +50,8 @@
         special_features AS "Специальные атрибуты"
     FROM film
     WHERE array_position(special_features, 'Behind the Scenes') IS NOT NULL;
+
+![1.13](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/02.%20SQL%20и%20работа%20с%20базами%20данных/2.%20Углублённая%20работа%20с%20типами%20данных%20и%20агрегация/1.13.png)
 
 ### Задание №2
 
@@ -64,7 +72,7 @@
       AND amount > 1.00
     ORDER BY payment_date;
 
-    
+![1.2](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/02.%20SQL%20и%20работа%20с%20базами%20данных/2.%20Углублённая%20работа%20с%20типами%20данных%20и%20агрегация/1.2.png)    
 
 ### Задание №3
 
@@ -82,7 +90,7 @@
     ORDER BY SUM(amount) DESC
     LIMIT 5;
 
-
+![1.3](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/02.%20SQL%20и%20работа%20с%20базами%20данных/2.%20Углублённая%20работа%20с%20типами%20данных%20и%20агрегация/1.3.png)
 
 ### Задание №4
 
@@ -101,6 +109,7 @@
     GROUP BY r.customer_id
     ORDER BY r.customer_id;
 
+![1.4](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/02.%20SQL%20и%20работа%20с%20базами%20данных/2.%20Углублённая%20работа%20с%20типами%20данных%20и%20агрегация/1.4.png)
 
 ### Задание №5
 
@@ -115,7 +124,7 @@
     FROM customer
     WHERE active = 0;
 
-
+![1.5](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/02.%20SQL%20и%20работа%20с%20базами%20данных/2.%20Углублённая%20работа%20с%20типами%20данных%20и%20агрегация/1.5.png)
 
 
 ### Задание №6
@@ -134,7 +143,7 @@
     GROUP BY customer_id, EXTRACT(MONTH FROM payment_date)
     ORDER BY customer_id, EXTRACT(MONTH FROM payment_date);
 
-
+![1.6](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/02.%20SQL%20и%20работа%20с%20базами%20данных/2.%20Углублённая%20работа%20с%20типами%20данных%20и%20агрегация/1.6.png)
 
 ### Задание №7
 
@@ -151,7 +160,7 @@
     GROUP BY staff_id
     ORDER BY staff_id;
 
-
+![1.7](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/02.%20SQL%20и%20работа%20с%20базами%20данных/2.%20Углублённая%20работа%20с%20типами%20данных%20и%20агрегация/1.7.png)
 
 ### Задание №8
 
@@ -169,6 +178,7 @@
     GROUP BY customer_id
     ORDER BY customer_id;
 
+![1.8](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/02.%20SQL%20и%20работа%20с%20базами%20данных/2.%20Углублённая%20работа%20с%20типами%20данных%20и%20агрегация/1.8.png)
 
 ## Дополнительная часть:
 
@@ -196,7 +206,7 @@
     WHERE rnk = 1
     ORDER BY day_of_week;
 
-
+![2.1](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/02.%20SQL%20и%20работа%20с%20базами%20данных/2.%20Углублённая%20работа%20с%20типами%20данных%20и%20агрегация/2.1.png)
 
 ### Задание №2
 
@@ -219,7 +229,7 @@
     GROUP BY staff_id
     ORDER BY staff_id;
 
-
+![2.2](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/02.%20SQL%20и%20работа%20с%20базами%20данных/2.%20Углублённая%20работа%20с%20типами%20данных%20и%20агрегация/2.2.png)
 
 
 ### Задание №3
@@ -241,7 +251,7 @@
     ORDER BY COUNT(*) DESC
     LIMIT 3;
 
-
+![2.3](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/02.%20SQL%20и%20работа%20с%20базами%20данных/2.%20Углублённая%20работа%20с%20типами%20данных%20и%20агрегация/2.3.png)
     
 
 
