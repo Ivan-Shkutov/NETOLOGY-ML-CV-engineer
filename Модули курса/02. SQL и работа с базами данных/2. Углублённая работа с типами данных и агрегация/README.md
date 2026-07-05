@@ -19,8 +19,31 @@
 
 В результирующей таблице должны быть следующие столбцы: Название фильма, столбец со специальными атрибутами.
 
+РЕШЕНИЕ:
 
+Способ 1: Оператор @> (содержит элемент)
 
+    SELECT 
+        title AS "Название фильма",
+        special_features AS "Специальные атрибуты"
+    FROM film
+    WHERE special_features @> ARRAY['Behind the Scenes'];
+
+Способ 2: Оператор ANY
+
+    SELECT 
+        title AS "Название фильма",
+        special_features AS "Специальные атрибуты"
+    FROM film
+    WHERE 'Behind the Scenes' = ANY(special_features);
+
+Способ 3: Функция array_position (проверка наличия элемента)
+
+    SELECT 
+        title AS "Название фильма",
+        special_features AS "Специальные атрибуты"
+    FROM film
+    WHERE array_position(special_features, 'Behind the Scenes') IS NOT NULL;
 
 ### Задание №2
 
@@ -28,7 +51,20 @@
 
 В результирующей таблице должны быть следующие столбцы: идентификатор платежа, размер платежа, дата платежа.
 
+РЕШЕНИЕ:
 
+Платежи с 17 по 19 июня 2005 года включительно, стоимость > 1.00, сортировка по дате.
+
+    SELECT 
+        payment_id AS "Идентификатор платежа",
+        amount AS "Размер платежа",
+        payment_date AS "Дата платежа"
+    FROM payment
+    WHERE payment_date BETWEEN '2005-06-17' AND '2005-06-19 23:59:59'
+      AND amount > 1.00
+    ORDER BY payment_date;
+
+    
 
 ### Задание №3
 
@@ -36,6 +72,15 @@
 
 В результирующей таблице должны быть следующие столбцы: Идентификатор пользователя, сумма платежей.
 
+РЕШЕНИЕ:
+
+    SELECT 
+        customer_id AS "Идентификатор пользователя",
+        SUM(amount) AS "Сумма платежей"
+    FROM payment
+    GROUP BY customer_id
+    ORDER BY SUM(amount) DESC
+    LIMIT 5;
 
 
 
@@ -45,6 +90,16 @@
 
 В результирующей таблице должны быть следующие столбцы: Идентификатор пользователя, количество предпочитаемых жанров.
 
+РЕШЕНИЕ:
+
+    SELECT 
+        r.customer_id AS "Идентификатор пользователя",
+        COUNT(DISTINCT fc.category_id) AS "Количество предпочитаемых жанров"
+    FROM rental r
+    JOIN inventory i ON r.inventory_id = i.inventory_id
+    JOIN film_category fc ON i.film_id = fc.film_id
+    GROUP BY r.customer_id
+    ORDER BY r.customer_id;
 
 
 ### Задание №5
@@ -52,6 +107,14 @@
 Получите количество пользователей, у которых отключено уведомление по email.
 
 В результирующей таблице должны быть следующие столбцы: Одно значение количества.
+
+РЕШЕНИЕ:
+
+    SELECT 
+        COUNT(*) AS "Количество пользователей с отключёнными уведомлениями"
+    FROM customer
+    WHERE active = 0;
+
 
 
 
@@ -61,6 +124,16 @@
 
 В результирующей таблице должны быть следующие столбцы: Идентификатор пользователя, значение месяца, сумма платежей.
 
+РЕШЕНИЕ:
+
+    SELECT 
+        customer_id AS "Идентификатор пользователя",
+        EXTRACT(MONTH FROM payment_date) AS "Месяц",
+        SUM(amount) AS "Сумма платежей"
+    FROM payment
+    GROUP BY customer_id, EXTRACT(MONTH FROM payment_date)
+    ORDER BY customer_id, EXTRACT(MONTH FROM payment_date);
+
 
 
 ### Задание №7
@@ -68,6 +141,15 @@
 Получите на какую сумму продал каждый сотрудник магазина.
 
 В результирующей таблице должны быть следующие столбцы: Идентификатор сотрудника, сумма платежей.
+
+РЕШЕНИЕ:
+
+    SELECT 
+        staff_id AS "Идентификатор сотрудника",
+        SUM(amount) AS "Сумма платежей"
+    FROM payment
+    GROUP BY staff_id
+    ORDER BY staff_id;
 
 
 
@@ -77,7 +159,16 @@
 
 В результирующей таблице должны быть следующие столбцы: Идентификатор пользователя, среднее количество дней с учетом округления
 
- 
+РЕШЕНИЕ:
+
+    SELECT 
+        customer_id AS "Идентификатор пользователя",
+        ROUND(AVG(EXTRACT(DAY FROM return_date - rental_date))::numeric, 2) AS "Среднее количество дней"
+    FROM rental
+    WHERE return_date IS NOT NULL
+    GROUP BY customer_id
+    ORDER BY customer_id;
+
 
 ## Дополнительная часть:
 
@@ -89,6 +180,22 @@
 
 В результирующей таблице должны быть следующие столбцы: День недели в виде числа от 1 до 7, количество аренд.
 
+РЕШЕНИЕ:
+
+    SELECT 
+        day_of_week AS "День недели",
+        rental_count AS "Количество аренд"
+    FROM (
+        SELECT 
+            EXTRACT(ISODOW FROM rental_date) AS day_of_week,
+            COUNT(*) AS rental_count,
+            RANK() OVER (ORDER BY COUNT(*) DESC) AS rnk
+        FROM rental
+        GROUP BY EXTRACT(ISODOW FROM rental_date)
+    ) ranked
+    WHERE rnk = 1
+    ORDER BY day_of_week;
+
 
 
 ### Задание №2
@@ -99,6 +206,19 @@
 
 В результирующей таблице должны быть следующие столбцы: Идентификатор сотрудника, количество продаж, столбец с указанием будет премия или нет.
 
+РЕШЕНИЕ:
+
+    SELECT 
+        staff_id AS "Идентификатор сотрудника",
+        COUNT(*) AS "Количество продаж",
+        CASE 
+            WHEN COUNT(*) > 7300 THEN 'Да'
+            ELSE 'Нет'
+        END AS "Премия"
+    FROM payment
+    GROUP BY staff_id
+    ORDER BY staff_id;
+
 
 
 
@@ -107,6 +227,23 @@
 Получите топ 3 пользователя, которые арендовали фильмы более 3х раз в период с 10 июня 2005 включительно по 13 июня 2005 не включительно.
 
 В результирующей таблице должны быть следующие столбцы: Идентификатор пользователя, количество аренд.
+
+РЕШЕНИЕ:
+
+    SELECT 
+        customer_id AS "Идентификатор пользователя",
+        COUNT(*) AS "Количество аренд"
+    FROM rental
+    WHERE rental_date >= '2005-06-10' 
+      AND rental_date < '2005-06-13'
+    GROUP BY customer_id
+    HAVING COUNT(*) > 3
+    ORDER BY COUNT(*) DESC
+    LIMIT 3;
+
+
+    
+
 
 
 
