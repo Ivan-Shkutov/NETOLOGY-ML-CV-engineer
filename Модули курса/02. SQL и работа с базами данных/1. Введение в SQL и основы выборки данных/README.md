@@ -18,6 +18,7 @@
 
 `
   SELECT DISTINCT city
+  
   FROM city;
 `
 
