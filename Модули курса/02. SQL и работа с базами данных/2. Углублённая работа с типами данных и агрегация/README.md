@@ -122,7 +122,7 @@
     SELECT 
         COUNT(*) AS "Количество пользователей с отключёнными уведомлениями"
     FROM customer
-    WHERE active = 0;
+    WHERE preferences->'notifications'->>'email' = 'false';
 
 ![1.5](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/02.%20SQL%20и%20работа%20с%20базами%20данных/2.%20Углублённая%20работа%20с%20типами%20данных%20и%20агрегация/1.5.png)
 
@@ -137,11 +137,11 @@
 
     SELECT 
         customer_id AS "Идентификатор пользователя",
-        EXTRACT(MONTH FROM payment_date) AS "Месяц",
+        TO_CHAR(payment_date, 'MM/YYYY') AS "Месяц",
         SUM(amount) AS "Сумма платежей"
     FROM payment
-    GROUP BY customer_id, EXTRACT(MONTH FROM payment_date)
-    ORDER BY customer_id, EXTRACT(MONTH FROM payment_date);
+    GROUP BY customer_id, TO_CHAR(payment_date, 'MM/YYYY')
+    ORDER BY customer_id, "Месяц";
 
 ![1.6](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/02.%20SQL%20и%20работа%20с%20базами%20данных/2.%20Углублённая%20работа%20с%20типами%20данных%20и%20агрегация/1.6.png)
 
@@ -172,7 +172,7 @@
 
     SELECT 
         customer_id AS "Идентификатор пользователя",
-        ROUND(AVG(EXTRACT(DAY FROM return_date - rental_date))::numeric, 2) AS "Среднее количество дней"
+        ROUND(AVG(EXTRACT(EPOCH FROM (return_date - rental_date)) / 86400)::numeric, 2) AS "Среднее количество дней"
     FROM rental
     WHERE return_date IS NOT NULL
     GROUP BY customer_id
@@ -193,18 +193,12 @@
 РЕШЕНИЕ:
 
     SELECT 
-        day_of_week AS "День недели",
-        rental_count AS "Количество аренд"
-    FROM (
-        SELECT 
-            EXTRACT(ISODOW FROM rental_date) AS day_of_week,
-            COUNT(*) AS rental_count,
-            RANK() OVER (ORDER BY COUNT(*) DESC) AS rnk
-        FROM rental
-        GROUP BY EXTRACT(ISODOW FROM rental_date)
-    ) ranked
-    WHERE rnk = 1
-    ORDER BY day_of_week;
+        EXTRACT(ISODOW FROM rental_date) AS "День недели",
+        COUNT(*) AS "Количество аренд"
+    FROM rental
+    GROUP BY EXTRACT(ISODOW FROM rental_date)
+    ORDER BY COUNT(*) DESC
+    LIMIT 1;
 
 ![2.1](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/02.%20SQL%20и%20работа%20с%20базами%20данных/2.%20Углублённая%20работа%20с%20типами%20данных%20и%20агрегация/2.1.png)
 
