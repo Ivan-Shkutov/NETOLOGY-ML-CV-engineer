@@ -15,6 +15,31 @@
 
 В результирующей таблице должны быть следующие столбцы: Имя пользователя, фамилия пользователя, адрес, город, страна.
 
+``
+select
+    c.first_name as "Имя пользователя",
+    c.last_name as "Фамилия пользователя",
+    a.address as "Адрес",
+    ci.city as "Город",
+    co.country as "Страна"
+from customer c
+join address a on c.address_id = a.address_id
+join city ci on a.city_id = ci.city_id
+join country co on ci.country_id = co.country_id
+order by c.customer_id;
+``
+
+Использовал:
+
+ 1. JOIN — для соединения таблиц по внешним ключам.
+
+ 2. Соединение идёт по цепочке:
+   customer -> address -> city -> country.
+
+ 3. Это гарантирует, что для каждого покупателя мы получаем его адрес, город и страну без дублирования строк.
+
+
+
  ### Задание №2.1
 
 С помощью SQL-запроса посчитайте для каждого магазина количество его покупателей.
