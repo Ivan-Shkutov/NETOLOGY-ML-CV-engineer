@@ -11,6 +11,7 @@
 - [6. Производительность: представления, индексы и анализ запросов](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/tree/main/Модули%20курса/02.%20SQL%20и%20работа%20с%20базами%20данных/6.%20Производительность%3A%20представления%2C%20индексы%20и%20анализ%20запросов)
 
 ### [03. Основы Python](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/tree/main/Модули%20курса/03.%20Основы%20Python)
+- [1. Введение в SQL и основы выборки данных](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/tree/main/Модули%20курса/02.%20SQL%20и%20работа%20с%20базами%20данных/1.%20Введение%20в%20SQL%20и%20основы%20выборки%20данных)
 
 ### [04. Библиотеки Python для анализа данных](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/tree/main/Модули%20курса/04.%20Библиотеки%20Python%20для%20анализа%20данных)
 
