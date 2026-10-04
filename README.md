@@ -12,6 +12,7 @@
 
 ### [03. Основы Python](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/tree/main/Модули%20курса/03.%20Основы%20Python)
 - [Итоговая проектная работа.](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/tree/main/Модули%20курса/03.%20Основы%20Python/Итоговая%20проектная%20работа.)
+
 ### [04. Библиотеки Python для анализа данных](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/tree/main/Модули%20курса/04.%20Библиотеки%20Python%20для%20анализа%20данных)
 
 ### [05. Статистика в Python](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/tree/main/Модули%20курса/05.%20Статистика%20в%20Python)
