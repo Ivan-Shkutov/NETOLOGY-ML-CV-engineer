@@ -10,26 +10,6 @@
 
 ---
 
-## Содержание
-
-1. [Описание задачи](#описание-задачи)
-2. [Что делает программа](#что-делает-программа)
-3. [Структура проекта](#структура-проекта)
-4. [Требования](#требования)
-5. [Установка](#установка)
-6. [Подготовка данных](#подготовка-данных)
-7. [Запуск](#запуск)
-8. [Пример вывода](#пример-вывода)
-9. [Результаты работы](#результаты-работы)
-10. [Как устроен код](#как-устроен-код)
-11. [Устойчивость к ошибкам](#устойчивость-к-ошибкам)
-12. [Соответствие чек-листу задания](#соответствие-чек-листу-задания)
-13. [Скриншоты работы](#скриншоты-работы)
-14. [Используемые технологии](#используемые-технологии)
-15. [Возможные проблемы и решения](#возможные-проблемы-и-решения)
-
----
-
 ## Описание задачи
 
 Дан набор CSV-файлов с синтетическими данными о заказах интернет-магазина.
@@ -92,60 +72,11 @@
 
 ![2](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/03.%20Основы%20Python/Итоговая%20проектная%20работа./2.png)
 
-## Требования
-
-- **Python** 3.8 или выше
-- **pandas** — для чтения CSV и расчёта метрик
-
-Всё остальное — стандартная библиотека Python
-(`pathlib`, `logging`).
-
----
-
-## Установка
-
-### Шаг 1. Клонировать или скачать проект
-
-```bash
-git clone https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer.git
-cd "NETOLOGY-ML-CV-engineer/Модули курса/03. Основы Python/Итоговая проектная работа."
-```
-
-Или скачать ZIP-архив и распаковать.
-
-### Шаг 2. Установить зависимости
-
-```bash
-pip install -r requirements.txt
-```
-
-Если `pip` не находит pandas — попробуй:
-
-```bash
-python -m pip install -r requirements.txt
-```
-
-### Шаг 3. Проверить установку
-
-```bash
-python --version
-python -c "import pandas; print(pandas.__version__)"
-```
-
-Должно показать что-то вроде:
-
-```
-Python 3.12.x
-2.x.x
-```
-
----
-
 ## Подготовка данных
 
 ### Основные файлы
 
-Положи в папку `data/` CSV-файлы с заказами. Источник данных —
+Положил в папку `data/` CSV-файлы с заказами. Источник данных —
 [Synthetic Order Records](https://www.kaggle.com/datasets/swainproject/synthetic-order-records-10k-to-10m-records)
 на Kaggle (лицензия CC BY 4.0). Для проверки достаточно двух файлов:
 
@@ -154,7 +85,7 @@ Python 3.12.x
 
 ### Тестовый «испорченный» файл
 
-Для проверки устойчивости скрипта создай файл `data/broken.csv` с
+Для проверки устойчивости скрипта создал файл `data/broken.csv` с
 нечисловыми значениями в `total_amount`:
 
 ```csv
@@ -183,6 +114,8 @@ order_id,person_id,order_date,status,total_amount,currency,payment_method,shippi
 
 ---
 
+![3](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/03.%20Основы%20Python/Итоговая%20проектная%20работа./3.png)
+
 ## Запуск
 
 Из корня проекта:
@@ -202,19 +135,7 @@ python run.py
 
 ## Пример вывода
 
-```
-==================================================
-Итоговый отчёт:
-       file_name  total_revenue  average_check  orders_count
- order_10000.csv     1069477.83         754.75          1417
-order_100000.csv    10874402.61         761.14         14287
-==================================================
-Обработано файлов:        2
-Файлов с ошибками:        1
-Отчёт сохранён в:         C:\...\order_analysis\reports\summary_report.csv
-Лог ошибок:               C:\...\order_analysis\logs\errors.log
-==================================================
-```
+![4](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/03.%20Основы%20Python/Итоговая%20проектная%20работа./4.png)
 
 ---
 
@@ -229,6 +150,11 @@ file_name,total_revenue,average_check,orders_count
 order_10000.csv,1069477.83,754.75,1417
 order_100000.csv,10874402.61,761.14,14287
 ```
+
+![5](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/03.%20Основы%20Python/Итоговая%20проектная%20работа./5.png)
+
+![6](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/03.%20Основы%20Python/Итоговая%20проектная%20работа./6.png)
+
 
 **Колонки:**
 
@@ -360,66 +286,7 @@ except Exception as exc:
 
 ---
 
-## Скриншоты работы
-
-### 1. Версии Python и pandas
-
-![Версия Python и pandas](screenshots/01_python_version.png)
-
-### 2. Структура проекта
-
-![Структура проекта](screenshots/02_project_tree.png)
-
-### 3. Содержимое папки data/
-
-![Содержимое data](screenshots/03_data_folder.png)
-
-### 4. Код config.py
-
-![config.py](screenshots/04_config_py.png)
-
-### 5. Код src/analyzer.py
-
-![analyzer.py, часть 1](screenshots/05_analyzer_py_part1.png)
-
-![analyzer.py, часть 2](screenshots/06_analyzer_py_part2.png)
-
-![analyzer.py, часть 3](screenshots/07_analyzer_py_part3.png)
-
-### 6. Код run.py
-
-![run.py](screenshots/08_run_py.png)
-
-### 7. requirements.txt
-
-![requirements.txt](screenshots/09_requirements.png)
-
-### 8. Запуск `python run.py`
-
-![Запуск](screenshots/10_run_output.png)
-
-### 9. Итоговый отчёт
-
-![Отчёт](screenshots/11_report_csv.png)
-
-### 10. Лог ошибок
-
-![Лог](screenshots/12_errors_log.png)
-
-### 11. Дополнительный тест (без битого файла)
-
-![Дополнительный тест](screenshots/13_extra_test.png)
-
----
-
-## Используемые технологии
-
-- **Python 3.8+** — язык программирования.
-- **pandas** — чтение CSV и работа с табличными данными.
-- **pathlib** — кроссплатформенная работа с путями файловой системы.
-- **logging** — стандартная библиотека для ведения логов.
-
-Архитектурные принципы, использованные в проекте:
+## Архитектурные принципы, использованные в проекте:
 
 - **Инкапсуляция** — вся работа с данными внутри класса.
 - **Разделение ответственности** — конфиг, логика, точка входа в разных файлах.
@@ -427,74 +294,3 @@ except Exception as exc:
 - **Отказоустойчивость** — обработка ошибок без остановки скрипта.
 
 ---
-
-## Возможные проблемы и решения
-
-### `ModuleNotFoundError: No module named 'pandas'`
-
-Установи библиотеку:
-
-```bash
-pip install pandas
-```
-
-или
-
-```bash
-python -m pip install pandas
-```
-
-### `ModuleNotFoundError: No module named 'src'`
-
-Запускай `run.py` **из корня проекта**, а не из другой папки:
-
-```bash
-cd "Итоговая проектная работа."
-python run.py
-```
-
-### `FileNotFoundError` при запуске
-
-Проверь, что файлы лежат в `data/`:
-
-```bash
-dir data
-```
-
-Должны быть `order_10000.csv`, `order_100000.csv` и `broken.csv`.
-
-### Кракозябры в CSV или логе
-
-Файл сохранён не в UTF-8. При сохранении `.py`-файлов в редакторе
-выбирай кодировку **UTF-8**. В Excel открой CSV через
-**Данные → Из текста** и укажи UTF-8.
-
-### В отчёте слишком мало/много строк
-
-Проверь, что в `data/` только нужные CSV. Не заливай в папку
-гигабайтные файлы — программа будет их обрабатывать очень долго.
-
----
-
-## Автор
-
-**Иван Шкутов**  
-Репозиторий курса: [Ivan-Shkutov/NETOLOGY-ML-CV-engineer](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer)
-
-Проект выполнен в рамках учебного задания по модулю «03. Основы Python»
-курса «ML-инженер. Специализация: CV-инженер с нуля» (Netology).
-
----
-
-## Лицензия
-
-Учебный проект. Датасет Synthetic Order Records распространяется по
-лицензии [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
-
----
-
-## Благодарности
-
-- [Kaggle / SwainLabs](https://www.kaggle.com/datasets/swainproject/synthetic-order-records-10k-to-10m-records) — за датасет.
-- Авторам курса Netology — за постановку задачи и материалы по
-  архитектуре автоматизации.
