@@ -88,9 +88,9 @@
 
 ## Структура проекта
 
-!1](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/02.%20SQL%20и%20работа%20с%20базами%20данных/1.%20Введение%20в%20SQL%20и%20основы%20выборки%20данных/0.png)
+![1](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/03.%20Основы%20Python/Итоговая%20проектная%20работа./1.png)
 
-![2](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/02.%20SQL%20и%20работа%20с%20базами%20данных/1.%20Введение%20в%20SQL%20и%20основы%20выборки%20данных/0.png)
+![2](https://github.com/Ivan-Shkutov/NETOLOGY-ML-CV-engineer/blob/main/Модули%20курса/03.%20Основы%20Python/Итоговая%20проектная%20работа./2.png)
 
 ## Требования
 
