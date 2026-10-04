@@ -88,39 +88,7 @@
 
 ## Структура проекта
 
-```
-Итоговая проектная работа./
-├── data/                  # входные CSV-файлы
-│   ├── order_10000.csv    # 10 000 записей
-│   ├── order_100000.csv   # 100 000 записей
-│   └── broken.csv         # тестовый «испорченный» файл
-├── reports/               # результат работы скрипта
-│   └── summary_report.csv
-├── logs/                  # лог ошибок
-│   └── errors.log
-├── screenshots/           # скриншоты работы
-│   ├── 01_python_version.png
-│   ├── 02_project_tree.png
-│   ├── 03_data_folder.png
-│   ├── 04_config_py.png
-│   ├── 05_analyzer_py_part1.png
-│   ├── 06_analyzer_py_part2.png
-│   ├── 07_analyzer_py_part3.png
-│   ├── 08_run_py.png
-│   ├── 09_requirements.png
-│   ├── 10_run_output.png
-│   ├── 11_report_csv.png
-│   ├── 12_errors_log.png
-│   └── 13_extra_test.png
-├── src/
-│   └── analyzer.py        # класс OrderAnalyzer
-├── config.py              # все настройки проекта
-├── run.py                 # точка входа
-├── requirements.txt       # зависимости проекта
-└── README.md              # этот файл
-```
 
----
 
 ## Требования
 
